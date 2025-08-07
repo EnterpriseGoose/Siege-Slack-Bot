@@ -148,7 +148,7 @@ app.action('siege-invite-select', async ({ ack, body, client, logger }) => {
     await client.chat.postMessage({
       channel: selectorUserId,
       mrkdwn: true,
-      text: `Thanks for selecting <@${selectedUserId}> as your referrer. \n\nWelcome to a new YSWS about shipping every week. Ship every week for 3 months and get a framework! Before the main event starts, we're running a referral campaign. If you can refer at least 5 people, you'll get a special prize + you get coins for each referral! \n\nYou can refer people by sending them a link to <#${event.channel}|#${event.channel_name}>`,
+      text: `Thanks for selecting <@${selectedUserId}> as your referrer. \n\nWelcome to a new YSWS about shipping every week. Ship every week for 3 months and get a framework! Before the main event starts, we're running a referral campaign. If you can refer at least 5 people, you'll get a special prize + you get coins for each referral! \n\nYou can refer people by sending them a link to <#C08SKC6P85V|#ship-or-sink>`,
     });
   } catch (error) {
     logger.error(error);
