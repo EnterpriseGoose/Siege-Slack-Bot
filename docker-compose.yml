@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  slack-bot:
+    build: .
+    container_name: referral-slack-bot
+    ports:
+      - '3000:3000'
+    environment:
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
+      - APP_TOKEN=${APP_TOKEN}
+      - PORT=3000
+    volumes:
+      - ./data:/app/data
+      - ./referals.json:/app/referals.json
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'wget',
+          '--no-verbose',
+          '--tries=1',
+          '--spider',
+          'http://localhost:3000/health',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
