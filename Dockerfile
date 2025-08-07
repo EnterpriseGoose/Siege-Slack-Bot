@@ -16,8 +16,5 @@ COPY . .
 # Create directory for data persistence
 RUN mkdir -p /app/data
 
-# Expose port
-EXPOSE 3000
-
 # Start the application
 CMD ["pnpm", "start"] 
