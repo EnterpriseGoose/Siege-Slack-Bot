@@ -53,7 +53,7 @@ app.event('member_joined_channel', async ({ event, client, logger }) => {
 // Helper functions for managing referrals data
 async function loadReferralsData() {
   try {
-    const data = await fs.readFile('referals.json', 'utf8');
+    const data = await fs.readFile('referals/referals.json', 'utf8');
     return JSON.parse(data);
   } catch (error) {
     // If file doesn't exist or is empty, return default structure
@@ -65,7 +65,9 @@ async function loadReferralsData() {
 }
 
 async function saveReferralsData(data) {
-  await fs.writeFile('referals.json', JSON.stringify(data, null, 2));
+  // Ensure directory exists
+  await fs.mkdir('referals', { recursive: true });
+  await fs.writeFile('referals/referals.json', JSON.stringify(data, null, 2));
 }
 
 // Helper function to get referral counts

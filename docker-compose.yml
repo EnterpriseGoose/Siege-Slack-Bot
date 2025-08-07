@@ -13,7 +13,7 @@ services:
       - PORT=3000
     volumes:
       - ./data:/app/data
-      - ./referals.json:/app/referals.json
+      - ./referals:/app/referals
     restart: unless-stopped
     healthcheck:
       test:
