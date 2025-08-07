@@ -23,7 +23,7 @@ app.event('member_joined_channel', async ({ event, client, logger }) => {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: 'Thanks for joining the raiding party! Who invited you here?',
+            text: `Thanks for joining <#${event.channel}|${event.channel_name}>! Who invited you here?`,
           },
         },
         {
