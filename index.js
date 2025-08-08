@@ -165,6 +165,28 @@ app.event('message', async ({ event, client, logger, say }) => {
       const leaderboardText = await generateLeaderboard(client, referralsData);
 
       say(leaderboardText);
+
+      if (
+        event.user === 'U07BN55GN3D' &&
+        typeof event.text === 'string' &&
+        /^set\s+<@([A-Z0-9]+)>\s+to\s+<@([A-Z0-9]+)>$/i.test(event.text.trim())
+      ) {
+        const match = event.text
+          .trim()
+          .match(/^set\s+<@([A-Z0-9]+)>\s+to\s+<@([A-Z0-9]+)>$/i);
+        if (match) {
+          const xUserId = match[1];
+          const yUserId = match[2];
+          referralsData.selections[xUserId] = yUserId;
+          referralsData.referrals[xUserId] = yUserId;
+          await saveReferralsData(referralsData);
+          await client.chat.postMessage({
+            channel: event.user,
+            text: `Set <@${xUserId}>'s referrer to <@${yUserId}>.`,
+          });
+        }
+        return;
+      }
     }
   } catch (error) {
     logger.error(error);
