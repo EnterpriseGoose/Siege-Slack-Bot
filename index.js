@@ -151,6 +151,7 @@ async function generateLeaderboard(client, referralsData) {
 }
 
 app.action('siege-invite-select', async ({ ack, body, client, logger }) => {
+  debugLog('Action received: siege-invite-select');
   await ack();
   debugLog('Action acked: siege-invite-select');
 
@@ -159,7 +160,6 @@ app.action('siege-invite-select', async ({ ack, body, client, logger }) => {
     const selectorUserId = body.user.id;
     debugLog('Referral selection received', {
       selectorUserId,
-      selectedUserId,
     });
 
     // Load current referrals data
