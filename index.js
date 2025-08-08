@@ -37,7 +37,6 @@ app.event('member_joined_channel', async ({ event, client, logger }) => {
     if (event.channel !== 'C097R32FC15' && event.channel !== 'C08SKC6P85V')
       // Not a tracked channel
       debugLog('Ignoring join event for channel', event.channel);
-    return;
     debugLog('Prompting user for referrer', { user: event.user });
     await client.chat.postMessage({
       channel: event.user,
